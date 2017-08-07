@@ -1,16 +1,14 @@
 package ua.com.phoneBook.model.entity;
 
-import ua.com.phoneBook.model.enums.Group;
-
 import java.util.Date;
 
 /**
- * Created by denystymoshkevych on 8/4/17.
+ * Created by danishevskyi on 8/4/17.
  */
 public class Contact {
 
-    private String surename;
     private String name;
+    private String surename;
     private String fullName;
     private String login;
     private String comment;
@@ -25,30 +23,7 @@ public class Contact {
     private Date dateUpdate;
 
     public Contact() {
-    }
-
-
-    public Contact(String surename, String name, String fullName, String login, String comment, Group group, String mobilePhone, String phone, String phone2, String email, /*String skype,*/ Address address) {
-        this.surename = surename;
-        this.name = name;
-        this.fullName = fullName;
-        this.login = login;
-        this.comment = comment;
-        this.group = group;
-        this.mobilePhone = mobilePhone;
-        this.phone = phone;
-        this.phone2 = phone2;
-        this.email = email;
-        /*this.skype = skype;*/
-        this.address = address;
-    }
-
-    public String getSurename() {
-        return surename;
-    }
-
-    public void setSurename(String surename) {
-        this.surename = surename;
+        dateCreate = new Date();
     }
 
     public String getName() {
@@ -59,12 +34,21 @@ public class Contact {
         this.name = name;
     }
 
+    public String getSurename() {
+        return surename;
+    }
+
+    public void setSurename(String surename) {
+        this.surename = surename;
+    }
+
     public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void createFullName() {
+        if(surename.length() != 0 && name.length() != 0)
+            this.fullName = surename + " " + name.charAt(0) + ".";
     }
 
     public String getLogin() {
@@ -75,13 +59,21 @@ public class Contact {
         this.login = login;
     }
 
-    /*public StringBuilder getComment() {
+    public String getComment() {
         return comment;
     }
 
-    public void setComment(StringBuilder comment) {
+    public void setComment(String comment) {
         this.comment = comment;
-    }*/
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 
     public String getMobilePhone() {
         return mobilePhone;
@@ -150,8 +142,8 @@ public class Contact {
     @Override
     public String toString() {
         return "Contact{" +
-                "surename='" + surename + '\'' +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
+                ", surename='" + surename + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", login='" + login + '\'' +
                 ", comment=" + comment +
@@ -166,11 +158,4 @@ public class Contact {
                 '}';
     }
 
-    public String toStringFullName() {
-        return "Contact{" +
-                "surename='" + surename + '\'' +
-                ", name='" + name + '\'' +
-                ", fullName='" + fullName + '\'' +
-                '}';
-    }
 }

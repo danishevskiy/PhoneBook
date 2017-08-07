@@ -1,7 +1,7 @@
 package ua.com.phoneBook.model.entity;
 
 /**
- * Created by denystymoshkevych on 8/4/17.
+ * Created by danishevskyi on 8/4/17.
  */
 public class Address {
 
@@ -11,13 +11,6 @@ public class Address {
     private String zipCode;
 
     public Address() {
-    }
-
-    public Address(String city, String street, String house, String zipCode) {
-        this.city = city;
-        this.street = street;
-        this.house = house;
-        this.zipCode = zipCode;
     }
 
     public String getCity() {
@@ -62,7 +55,4 @@ public class Address {
                 '}';
     }
 
-    public String toStringFullAddress() {
-        return "Address: " + zipCode + ", " + city + ", " + street + ", " + house + ";";
-    }
 }

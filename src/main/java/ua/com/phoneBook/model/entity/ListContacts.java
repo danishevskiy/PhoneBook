@@ -3,8 +3,8 @@ package ua.com.phoneBook.model.entity;
 import java.util.List;
 
 /**
- * Created by denystymoshkevych on 8/4/17.
- */
+* Created by danishevskyi on 8/4/17.
+*/
 public class ListContacts {
 
     List<Contact> contacts;
