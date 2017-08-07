@@ -3,11 +3,14 @@ package ua.com.phoneBook.controller;
 import ua.com.phoneBook.model.entity.Address;
 import ua.com.phoneBook.model.entity.Contact;
 import ua.com.phoneBook.model.entity.Group;
+import ua.com.phoneBook.model.entity.ListContacts;
 import ua.com.phoneBook.view.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
 
 import static ua.com.phoneBook.view.StaticWords.*;
 
@@ -17,18 +20,21 @@ import static ua.com.phoneBook.view.StaticWords.*;
 public class Controller implements RegularExp{
 
     private Out out;
-    private Contact contact;
+    private ListContacts listContacts;
 
-    public Controller(Contact contact, Out out) throws IOException {
-        this.contact = contact;
+    public Controller(Out out, ListContacts listContacts) throws IOException {
         this.out = out;
+        this.listContacts = listContacts;
     }
 
     public void init() throws IOException{
 
+        Contact contact = new Contact();
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Group group;
         Address address;
+        List<Contact> list = getListContacts();
 
         contact.setName(createFieldMember(br, NAME, REG_NAME));
         contact.setSurename(createFieldMember(br, SURNAME, REG_NAME));
@@ -53,7 +59,19 @@ public class Controller implements RegularExp{
                 address.setHouse(createFieldMember(br, HOUSE, REG_TEXT));
                 address.setZipCode(createFieldMember(br, ZIP_CODE, REG_ZIP_CODE));
 
-        out.printMessage(contact.toString());
+        list.add(contact);
+
+        out.printMessage(list.toString());
+    }
+
+    List<Contact> getListContacts(){
+        List<Contact> list = null;
+
+        if (listContacts == null)
+            listContacts.setContacts(new LinkedList<Contact>());
+        list = listContacts.getContacts();
+
+        return list;
     }
 
     private String createFieldMember(BufferedReader br, String in, String regexp) throws IOException {

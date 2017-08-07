@@ -1,5 +1,6 @@
 package ua.com.phoneBook.model.entity;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -7,13 +8,10 @@ import java.util.List;
 */
 public class ListContacts {
 
-    List<Contact> contacts;
+    private List<Contact> contacts;
 
     public ListContacts() {
-    }
-
-    public ListContacts(List<Contact> contacts) {
-        this.contacts = contacts;
+        contacts = new LinkedList<>();
     }
 
     public List<Contact> getContacts() {

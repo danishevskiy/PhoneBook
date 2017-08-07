@@ -2,6 +2,7 @@ package ua.com.phoneBook;
 
 import ua.com.phoneBook.controller.Controller;
 import ua.com.phoneBook.model.entity.Contact;
+import ua.com.phoneBook.model.entity.ListContacts;
 import ua.com.phoneBook.view.Out;
 
 import java.io.IOException;
@@ -12,9 +13,10 @@ import java.io.IOException;
 public class App {
 
     public static void main(String[] args)  throws IOException {
-        Contact contact = new Contact();
+
+        ListContacts listContacts = new ListContacts();
         Out out = new Out();
-        Controller controller = new Controller(contact, out);
+        Controller controller = new Controller(out, listContacts);
 
         controller.init();
     }
